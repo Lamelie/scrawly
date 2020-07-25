@@ -16,14 +16,14 @@ form.addEventListener('submit', event => {
   .then(response => response.json())
   .then(data => {
     // Ajouter la nouvelle ligne en JS - un peu complexe
-    addRow(data); //todo: ajouter la fonction addRow
+    addRow(data); //TODO: ajouter la fonction addRow
 
     // notifier les utilisateurs de la nouvelle ligne rajoutée.
-    socket.emit('new-row', data); //todo: ajout fonction 'new row'
+    socket.emit('new-row', data); //TODO: ajout fonction 'new row'
   }) 
 });
 
-//todo: création de la fonction addRow
+//TODO: création de la fonction addRow sur les lignes 28 à 38
 
 function addRow(data) {
   const table = form.querySelector('table tbody');

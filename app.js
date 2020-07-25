@@ -21,7 +21,7 @@ var app = express();
 
 var app = require('express')();
 var server = require('http').Server(app);
-var io = require('socket.io')(server); //socket permet d'écouter des événements et de faire une liaison entre navigateur et serveur. on peut recevoir des notifications depuis le serveur.
+var io = require('socket.io')(server); //TODO:socket permet d'écouter des événements et de faire une liaison entre navigateur et serveur. on peut recevoir des notifications depuis le serveur.
 
 io.on('connection', socket => { 
 console.log('user connected');
