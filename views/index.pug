@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  section.homepage.bg-blue
+    h1 Scrawly
+    if user
+      p Bonjour, #{user.username}
+    form(action='/events/search' method='POST')
+      input(type='text', name="slug" placeholder='Scrawl slug')
+      input(type='submit', value='GO!')
+    if user 
+      a.btn(href='/events/new')
+        i.fa.fa-plus 
+        |  Créer un nouveau Scrawl
+      a.btn(href='/users/logout')
+        i.fa.fa-less 
+        |  Se déconnecter
+    else
+      a.btn(href='/users/register') Créer un compte
+      a.btn(href='/users/login') Se connecter

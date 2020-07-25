@@ -1,0 +1,19 @@
+extends ../layout 
+
+block content
+    section.bg-blue
+        h1 New Scrawl
+    section.container.form-new
+        label(for='title') Title
+        input#title(type='text' value=event.title disabled)
+        ul
+          each date in event.dates 
+            li= date.toLocaleDateString()
+
+        form(action='/events/edit/' + event.slug method='POST')
+            input(type='date' name='date')
+            button.button.button-primary(type='submit')
+                i.fa.fa-plus Add
+
+        a.button.button-primary(href='/events/' + event.slug)
+            i.fa.fa-check Finish

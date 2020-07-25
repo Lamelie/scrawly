@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+    section.bg-blue
+        h1 New Scrawl
+    section.container.form-new
+
+        if err
+            case err.code
+                when 11000
+                    p Ce slug n'est pas disponible
+                default
+                    p Une erreur s'est produite
+
+        form(action='/events/new' method='POST')
+            div
+                label(for='title') Titre
+                input#title(type='text' name='title' value=event.title placeholder="Julien's birthday")
+            div
+                label(for='slug') Slug
+                input#slug(type='text' name='slug' value=event.slug placeholder='Scrawl slug')
+            button.button.button-primary(type='submit')
+                i.fa.fa-arrow-right Create and add new dates
+
+

@@ -1,0 +1,51 @@
+extends ../layout
+
+block content
+    section.bg-blue
+        h1=event.title
+        if event.user
+            p Créé par #{event.user.username}
+            if user && (event.user._id = user._id)
+                a.btn Supprimer
+    section.container
+        form#form-event(action="/events/" + event.slug + '/dates/new' method='POST')
+            table.poll
+                thead
+                    tr
+                        th
+                        each date in dates
+                            th
+                                .date-container
+                                    .day=moment(date).format('dddd')
+                                    .date=moment(date).format('DD')
+                                    .month=moment(date).format('MMM')
+                        th
+                tbody
+                    each person in persons
+                        tr
+                            td
+                                .user-container
+                                    img(src='https://www.gravatar.com/avatar/' + md5(person.email) + '?s=32')
+                                    span #{person.fullName}
+                            each eventdate in dates
+                                if (person.dates.map(d => (new Date(d)).toString()).includes(eventdate.toString()))                         
+                                    td.available
+                                        i.fa.fa-3x.fa-check-circle
+                                else
+                                    td.unavailable
+                                        i.fa.fa-3x.fa-times-circle
+                            td
+                                a(href='#')
+                                    i.fa.fa-2x.fa-edit
+                    tr
+                        td
+                            .user-form-container
+                                input(type='email' name='email' placeholder='Email')
+                                input(type='text' name='fullName' placeholder='Fullname')
+                        each date in dates
+                            td
+                                input(type='checkbox' name="dates" value=date)
+
+                        td
+                            button.button.button-primary(type='submit')
+                                i.fa.fa-2x.fa-save

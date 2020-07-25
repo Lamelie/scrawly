@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  section.bg-blue
+    h1 Créer un compte
+    form(action='/users/register' method='POST')
+      input(type='text' name='username' placeholder='Nom de l\'utilisateur')
+      input(type='password' name='password' placeholder='Mot de passe')
+      button.btn S'enregistrer
